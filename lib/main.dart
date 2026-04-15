@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:b1k5_mobile/features/home/presentation/pages/home.dart';
+import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
 
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const MainNavbar(),
     );
   }
 }
