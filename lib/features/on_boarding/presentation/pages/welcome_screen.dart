@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
+import 'package:b1k5_mobile/features/on_boarding/presentation/pages/information_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -43,7 +44,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 shape: BoxShape.circle, // Membuat Container jadi lingkaran
                 border: Border.all(
                   color: Color(0xFFF56564),
-                  width: 1.0, // Ketebalan outline tipis
+                  width: 1.0, // Keteba lan outline tipis
                 ),
               ),
             ),
@@ -107,8 +108,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   textColor: const Color(0xFF6E1312),
                   borderRadius: 24, // Membuat tombol lebih bulat ujungnya
                   onPressed: () {
-                    // Tambahkan logika navigasi ke halaman selanjutnya di sini
-                    print("Get Started diclick");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const InformationScreen(),
+                      ),
+                    );
                   },
                 ),
               ],
