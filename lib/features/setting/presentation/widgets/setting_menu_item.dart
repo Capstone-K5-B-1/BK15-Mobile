@@ -20,25 +20,31 @@ class SettingMenuItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         ListTile(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          title: Text(
-            title,
-            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+              ),
+              if (subtitle != null) ...[
+                const SizedBox(height: 1), // Ubah angka ini untuk mengatur jarak (bisa 0, 1, 2, dst)
+                Text(
+                  subtitle!,
+                  style: TextStyle(fontSize: 10, color: Colors.grey.shade500),
+                ),
+              ],
+            ],
           ),
-          subtitle:
-              subtitle != null
-                  ? Text(
-                    subtitle!,
-                    style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
-                  )
-                  : null,
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               if (trailingText != null)
                 Text(
                   trailingText!,
-                  style: TextStyle(fontSize: 13, color: Colors.grey.shade500),
+                  style: TextStyle(fontSize: 10, color: Colors.grey.shade500),
                 ),
               if (trailingText != null) const SizedBox(width: 8),
               const Icon(
@@ -52,7 +58,7 @@ class SettingMenuItem extends StatelessWidget {
         ),
         if (showBorder)
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
             child: Divider(
               height: 1,
               thickness: 1,

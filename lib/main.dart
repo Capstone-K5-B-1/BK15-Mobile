@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
-
+import 'package:b1k5_mobile/features/splash/presentation/pages/splash.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainNavbar(),
+      home: const SplashScreen(),
     );
   }
 }

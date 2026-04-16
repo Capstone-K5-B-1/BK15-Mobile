@@ -16,16 +16,16 @@ class SettingMenu extends StatelessWidget {
               padding: const EdgeInsets.all(4),
               child: Image.asset(
                 'assets/features/home/icons/display_and_others.png',
-                width: 32,
-                height: 32,
+                width: 20,
+                height: 20,
               ),
             ),
             // const SizedBox(width: 4),
             Text(
               'Display & Others',
               style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
                 color: Colors.grey.shade800,
               ),
             ),
@@ -40,9 +40,9 @@ class SettingMenu extends StatelessWidget {
             borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.03),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
+                color: Colors.black.withOpacity(0.10),
+                blurRadius: 8,
+                offset: const Offset(0, 6),
               ),
             ],
           ),

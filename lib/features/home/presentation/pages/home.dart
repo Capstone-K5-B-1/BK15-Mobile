@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                         child: const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 70),
+                            SizedBox(height: 100),
                             HomeTabMenu(),
                             SizedBox(height: 30),
                             HomeMenuGrid(),

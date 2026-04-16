@@ -7,7 +7,7 @@ class SettingHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.only(top: 60, bottom: 30),
+      padding: const EdgeInsets.only(top: 60, bottom: 16),
       decoration: const BoxDecoration(
         color: Color(0xFF910A19), // Merah bata / Maroon
         borderRadius: BorderRadius.only(

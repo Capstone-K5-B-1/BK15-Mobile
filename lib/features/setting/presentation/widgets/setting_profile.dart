@@ -27,20 +27,36 @@ class SettingProfile extends StatelessWidget {
         const SizedBox(height: 20),
 
         // Login Button
-        ElevatedButton(
-          onPressed: () {},
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFFb31217),
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+        Container(
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xFFe54540),
+                Color(0xFFb10707),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
-            elevation: 0,
+            borderRadius: BorderRadius.circular(100),
           ),
-          child: const Text(
-            'Sign Up or Login',
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+          child: ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.transparent,
+              foregroundColor: Colors.white,
+              shadowColor: Colors.transparent,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100),
+              ),
+              elevation: 0,
+            ),
+            child: const Text(
+              'Sign Up or Login',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+            ),
           ),
         ),
       ],
