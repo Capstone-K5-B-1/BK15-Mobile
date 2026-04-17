@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
-import 'package:b1k5_mobile/features/on_boarding/presentation/pages/welcome_screen.dart';
+import 'package:b1k5_mobile/features/on_boarding/presentation/pages/main_on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (mounted) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const WelcomeScreen()),
+          MaterialPageRoute(builder: (context) => const MainOnBoardingScreen()),
         );
       }
     });

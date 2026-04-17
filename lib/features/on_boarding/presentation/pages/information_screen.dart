@@ -1,29 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
+import 'package:b1k5_mobile/features/on_boarding/presentation/pages/complete_screen.dart';
+import 'package:b1k5_mobile/features/on_boarding/presentation/widgets/on_boarding_header.dart';
 
-class InformationScreen extends StatefulWidget {
-  const InformationScreen({super.key});
+class InformationScreen extends StatelessWidget {
+  final VoidCallback onNext;
 
-  @override
-  State<InformationScreen> createState() => _InformationScreenState();
-}
+  const InformationScreen({super.key, required this.onNext});
 
-class _InformationScreenState extends State<InformationScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF6E1312),
-      body: Stack(
-        children: [
-          Positioned(
-            top: 4,
-            left: 0,
-            right: 0,
-            child: Image.asset(
-              "assets/features/on_boarding/images/texture_welcome_1.png",
-            ),
-          ),
+    return Stack(
+      children: [
           Positioned(
             top: -2,
             left: 0,
@@ -55,23 +44,9 @@ class _InformationScreenState extends State<InformationScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'More than just \nbanking',
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 8),
-                    Text(
-                      'From you basic transfer and payment needs, to your investment and leisure needs, we got it all covered!',
-                      style: TextStyle(fontSize: 14, color: Colors.white),
-                    ),
-                  ],
+                const OnBoardingHeader(
+                  title: 'More than just \nbanking',
+                  description: 'From you basic transfer and payment needs, to your investment and leisure needs, we got it all covered!',
                 ),
                 Center(
                   child: Column(
@@ -106,20 +81,12 @@ class _InformationScreenState extends State<InformationScreen> {
                   backgroundColor: Colors.white,
                   textColor: const Color(0xFF6E1312),
                   borderRadius: 24, // Membuat tombol lebih bulat ujungnya
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const InformationScreen(),
-                      ),
-                    );
-                  },
+                  onPressed: onNext,
                 ),
               ],
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }
