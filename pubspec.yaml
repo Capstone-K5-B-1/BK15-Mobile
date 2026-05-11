@@ -38,6 +38,7 @@ dependencies:
   shared_preferences: ^2.5.3
   flutter_svg: ^2.2.2
   lucide_icons: ^0.257.0
+  syncfusion_flutter_charts: ^31.1.19
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +73,9 @@ flutter:
     - assets/features/splash/images/
     - assets/features/on_boarding/icons/
     - assets/features/on_boarding/images/
+    - assets/features/auth/images/
+    - assets/features/my_account/icons/
+    - assets/features/my_account/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -84,17 +88,32 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+  fonts:
+    - family: PlusJakartaSans
+      fonts:
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Regular.ttf
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Plus_Jakarta_Sans/static/PlusJakartaSans-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package

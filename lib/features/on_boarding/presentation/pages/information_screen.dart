@@ -14,7 +14,7 @@ class InformationScreen extends StatelessWidget {
     return Stack(
       children: [
           Positioned(
-            top: -2,
+            top: 0,
             left: 0,
             right: 0,
             child: Image.asset(
