@@ -33,6 +33,38 @@ class ApiService {
     return _handleResponse(response);
   }
 
+  Future<Map<String, dynamic>> getAllUsers() async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/users/'),
+      headers: await _authHeaders(),
+    );
+    return _handleResponse(response);
+  }
+
+  Future<Map<String, dynamic>> getUserById(String id) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/users/$id'),
+      headers: await _authHeaders(),
+    );
+    return _handleResponse(response);
+  }
+
+  Future<Map<String, dynamic>> getUserActivity(String id) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/users/$id/activity'),
+      headers: await _authHeaders(),
+    );
+    return _handleResponse(response);
+  }
+
+  Future<Map<String, dynamic>> getUserSegmentation(String id) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/users/$id/segment'),
+      headers: await _authHeaders(),
+    );
+    return _handleResponse(response);
+  }
+
   Future<Map<String, dynamic>> getPersonalization(String customerId) async {
     final response = await http.get(
       Uri.parse('$baseUrl/personalization/$customerId'),
