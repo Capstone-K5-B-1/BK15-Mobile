@@ -43,7 +43,7 @@ class _MainNavbarState extends State<MainNavbar> {
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 9,
-                fontWeight: FontWeight.w300
+                fontWeight: FontWeight.w300,
               ),
             ),
             Image.asset(
@@ -64,64 +64,62 @@ class _MainNavbarState extends State<MainNavbar> {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black12,
-              blurRadius: 10,
+              color: Color.fromARGB(0, 0, 0, 0),
+              blurRadius: 4,
               spreadRadius: 2,
               offset: Offset(0, -2), // Shadow mengarah ke atas
             ),
           ],
         ),
-        child: BottomAppBar(
-          color: Colors.white,
-          surfaceTintColor: Colors.transparent,
-          elevation: 0, // Matikan elevation default
-          clipBehavior: Clip.none,
-          shape: const AutomaticNotchedShape(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(14),
-                topRight: Radius.circular(14),
-              ),
-            ),
-            CircleBorder(),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(14),
+            topRight: Radius.circular(14),
           ),
-          notchMargin: 8.0,
-          child: SizedBox(
-            height: 60,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildNavItem(
-                      icon: Icons.home_filled,
-                      label: 'Home',
-                      index: 0,
-                    ),
-                    _buildNavItem(
-                      icon: Icons.credit_card,
-                      label: 'My Accounts',
-                      index: 1,
-                    ),
-                  ],
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildNavItem(
-                      icon: Icons.monetization_on,
-                      label: 'Wealth',
-                      index: 2,
-                    ),
-                    _buildNavItem(
-                      icon: Icons.settings,
-                      label: 'Settings',
-                      index: 3,
-                    ),
-                  ],
-                ),
-              ],
+          child: BottomAppBar(
+            color: Colors.white,
+            surfaceTintColor: Colors.transparent,
+            elevation: 0, // Matikan elevation default
+            clipBehavior: Clip.antiAlias,
+            shape: const CircularNotchedRectangle(),
+            notchMargin: 10.0,
+            child: SizedBox(
+              height: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildNavItem(
+                        icon: Icons.home_filled,
+                        label: 'Home',
+                        index: 0,
+                      ),
+                      _buildNavItem(
+                        icon: Icons.credit_card,
+                        label: 'My Accounts',
+                        index: 1,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildNavItem(
+                        icon: Icons.monetization_on,
+                        label: 'Wealth',
+                        index: 2,
+                      ),
+                      _buildNavItem(
+                        icon: Icons.settings,
+                        label: 'Settings',
+                        index: 3,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
