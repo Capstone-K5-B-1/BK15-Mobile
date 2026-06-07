@@ -3,6 +3,8 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
 import 'package:b1k5_mobile/shared/widgets/button/input_field.dart';
 import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
+import 'package:b1k5_mobile/core/services/api_services.dart';
+import 'package:b1k5_mobile/repositories/auth_repository.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,6 +14,60 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _userIdController = TextEditingController();
+  final AuthRepository _authRepository = AuthRepository(ApiService());
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    _userIdController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _handleLogin() async {
+    final userId = _userIdController.text.trim();
+    if (userId.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please enter your User ID'),
+          backgroundColor: Colors.redAccent,
+        ),
+      );
+      return;
+    }
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      await _authRepository.login(userId);
+      if (mounted) {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MainNavbar(),
+          ),
+          (route) => false,
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString().replaceAll('Exception:', '').trim()),
+            backgroundColor: Colors.redAccent,
+          ),
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -154,6 +210,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 children: [
                                   const SizedBox(height: 64),
                                   CustomInputField(
+                                    controller: _userIdController,
                                     hintText: 'Enter user ID',
                                     isPassword: true,
                                     suffixActionText: 'Forgot user ID?',
@@ -164,20 +221,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   const SizedBox(height: 36),
 
                                   CustomButton(
-                                    text: 'Login',
+                                    text: _isLoading ? 'Logging in...' : 'Login',
                                     backgroundColor: Colors.white,
                                     textColor: const Color(0xFF6E1312),
                                     fontWeight: FontWeight.w500,
                                     borderRadius: 24,
-                                    onPressed: () {
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => const MainNavbar(),
-                                        ),
-                                        (route) => false,
-                                      );
-                                    },
+                                    onPressed: _isLoading ? () {} : _handleLogin,
                                   ),
                                   const SizedBox(height: 40),
                                   Text(

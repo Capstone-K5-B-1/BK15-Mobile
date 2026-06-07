@@ -13,7 +13,7 @@ class OnBoardingHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 140, // Menjaga konsistensi tinggi header pada setiap halamannya
+      height: 160, // Menjaga konsistensi tinggi header pada setiap halamannya
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

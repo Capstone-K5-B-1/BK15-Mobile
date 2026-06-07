@@ -7,28 +7,28 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ApiService {
   static String get baseUrl => dotenv.env['BASE_URL'] ?? 'http://10.0.2.2:8080/api';
 
-  Future<Map<String, dynamic>> login(String customerId, String password) async {
+  Future<Map<String, dynamic>> login(String customerId) async {
     final response = await http.post(
       Uri.parse('$baseUrl/auth/login'),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({'customer_id': customerId, 'password': password}),
-    );
+      body: jsonEncode({'customer_id': customerId}),
+    ).timeout(const Duration(seconds: 10));
 
     final data = _handleResponse(response);
 
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('token', data['token']);
-    await prefs.setString('customer_id', data['customer_id']);
-    await prefs.setString('role', data['role']);
+    await prefs.setString('token', data['token'] ?? '');
+    await prefs.setString('customer_id', data['customer_id'] ?? '');
+    await prefs.setString('role', data['role'] ?? '');
 
     return data;
   }
 
   Future<Map<String, dynamic>> getUser(String customerId) async {
     final response = await http.get(
-      Uri.parse('$baseUrl/customers/$customerId'),
+      Uri.parse('$baseUrl/users/$customerId'),
       headers: await _authHeaders(),
-    );
+    ).timeout(const Duration(seconds: 10));
 
     return _handleResponse(response);
   }
@@ -37,7 +37,7 @@ class ApiService {
     final response = await http.get(
       Uri.parse('$baseUrl/users/'),
       headers: await _authHeaders(),
-    );
+    ).timeout(const Duration(seconds: 10));
     return _handleResponse(response);
   }
 
@@ -45,7 +45,7 @@ class ApiService {
     final response = await http.get(
       Uri.parse('$baseUrl/users/$id'),
       headers: await _authHeaders(),
-    );
+    ).timeout(const Duration(seconds: 10));
     return _handleResponse(response);
   }
 
@@ -53,7 +53,7 @@ class ApiService {
     final response = await http.get(
       Uri.parse('$baseUrl/users/$id/activity'),
       headers: await _authHeaders(),
-    );
+    ).timeout(const Duration(seconds: 10));
     return _handleResponse(response);
   }
 
@@ -61,7 +61,7 @@ class ApiService {
     final response = await http.get(
       Uri.parse('$baseUrl/users/$id/segment'),
       headers: await _authHeaders(),
-    );
+    ).timeout(const Duration(seconds: 10));
     return _handleResponse(response);
   }
 
@@ -69,7 +69,7 @@ class ApiService {
     final response = await http.get(
       Uri.parse('$baseUrl/personalization/$customerId'),
       headers: await _authHeaders(),
-    );
+    ).timeout(const Duration(seconds: 10));
 
     return _handleResponse(response);
   }
@@ -78,7 +78,7 @@ class ApiService {
     final response = await http.get(
       Uri.parse('$baseUrl/recommendation/$customerId'),
       headers: await _authHeaders(),
-    );
+    ).timeout(const Duration(seconds: 10));
 
     return _handleResponse(response);
   }
@@ -94,7 +94,12 @@ class ApiService {
   }
 
   Map<String, dynamic> _handleResponse(http.Response response) {
-    final data = jsonDecode(response.body) as Map<String, dynamic>;
+    Map<String, dynamic> data;
+    try {
+      data = jsonDecode(response.body) as Map<String, dynamic>;
+    } catch (_) {
+      throw Exception("Server returned status ${response.statusCode}");
+    }
 
     if (response.statusCode < 200 || response.statusCode >= 300) {
       throw Exception(data['error'] ?? "Request failed");

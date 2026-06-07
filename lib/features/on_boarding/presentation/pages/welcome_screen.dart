@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
-import 'package:b1k5_mobile/features/on_boarding/presentation/pages/information_screen.dart';
 import 'package:b1k5_mobile/features/on_boarding/presentation/widgets/on_boarding_header.dart';
 
 class WelcomeScreen extends StatelessWidget {
