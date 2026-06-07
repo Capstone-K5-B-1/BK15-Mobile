@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:b1k5_mobile/features/home/presentation/pages/home.dart';
+import 'package:b1k5_mobile/features/home/presentation/pages/user_home.dart';
 import 'package:b1k5_mobile/features/my_account/presentation/pages/my_account.dart';
 import 'package:b1k5_mobile/features/wealth/presentation/pages/wealth.dart';
 import 'package:b1k5_mobile/features/setting/presentation/pages/setting.dart';
@@ -15,7 +15,7 @@ class _MainNavbarState extends State<MainNavbar> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const HomePage(),
+    const UserHomePage(),
     const MyAccountPage(),
     const WealthPage(),
     const SettingPage(),

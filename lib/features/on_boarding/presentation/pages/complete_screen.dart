@@ -1,8 +1,7 @@
+import 'package:b1k5_mobile/features/home/presentation/pages/guest_home.dart';
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
 import 'package:b1k5_mobile/features/on_boarding/presentation/widgets/on_boarding_header.dart';
-import 'package:b1k5_mobile/features/auth/presentation/pages/login_screen.dart';
 
 class CompleteScreen extends StatelessWidget {
   const CompleteScreen({super.key});
@@ -52,7 +51,7 @@ class CompleteScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const LoginScreen(),
+                        builder: (context) => const GuestHomePage(),
                       ),
                     );
                   },

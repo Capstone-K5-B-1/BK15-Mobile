@@ -7,20 +7,36 @@ class AuthRepository {
 
   AuthRepository(this._apiService);
 
-  /// Logs in a customer using their customer ID and password.
+  /// Logs in a customer using their customer ID.
   /// Returns a [Customer] object upon successful authentication.
-  Future<Customer> login(String customerId, String password) async {
-    final data = await _apiService.login(customerId, password);
+  Future<Customer> login(String customerId) async {
+    final data = await _apiService.login(customerId);
 
     // Parse the Customer from response if it is included directly
     if (data.containsKey('customer')) {
       return Customer.fromJson(data['customer'] as Map<String, dynamic>);
     } else if (data.containsKey('username') && data.containsKey('email')) {
-      return Customer.fromJson(data);
+      final mergedData = Map<String, dynamic>.from(data);
+      if (!mergedData.containsKey('customer_id')) {
+        mergedData['customer_id'] = customerId;
+      }
+      if (!mergedData.containsKey('id')) {
+        mergedData['id'] = data['id'] ?? 0;
+      }
+      return Customer.fromJson(mergedData);
     }
 
     // Otherwise, fetch user details using the customerId
-    final customerData = await _apiService.getUser(customerId);
+    final responseData = await _apiService.getUser(customerId);
+    final customerData = Map<String, dynamic>.from(responseData);
+    
+    if (!customerData.containsKey('customer_id') || customerData['customer_id'] == null) {
+      customerData['customer_id'] = customerId;
+    }
+    if (!customerData.containsKey('id') || customerData['id'] == null) {
+      customerData['id'] = responseData['id'] ?? 0;
+    }
+
     return Customer.fromJson(customerData);
   }
 

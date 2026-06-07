@@ -6,14 +6,14 @@ import 'package:b1k5_mobile/features/home/presentation/widgets/home_menu_grid.da
 import 'package:b1k5_mobile/features/home/presentation/widgets/home_news_promo.dart';
 import 'package:b1k5_mobile/features/home/presentation/widgets/home_login_card.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class GuestHomePage extends StatefulWidget {
+  const GuestHomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<GuestHomePage> createState() => _GuestHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _GuestHomePageState extends State<GuestHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
