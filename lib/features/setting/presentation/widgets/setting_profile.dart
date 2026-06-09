@@ -3,6 +3,7 @@ import 'package:b1k5_mobile/features/auth/presentation/pages/login_screen.dart';
 import 'package:b1k5_mobile/repositories/auth_repository.dart';
 import 'package:b1k5_mobile/core/services/api_services.dart';
 import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingProfile extends StatefulWidget {
   const SettingProfile({super.key});
@@ -33,11 +34,7 @@ class _SettingProfileState extends State<SettingProfile> {
   Future<void> _handleLogout() async {
     await _authRepository.logout();
     if (mounted) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const MainNavbar()),
-        (route) => false,
-      );
+      context.go('/MainNavbar');
     }
   }
 

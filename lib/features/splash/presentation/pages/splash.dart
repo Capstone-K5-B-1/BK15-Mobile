@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:b1k5_mobile/features/on_boarding/presentation/pages/main_on_boarding_screen.dart';
+// import 'package:b1k5_mobile/features/on_boarding/presentation/pages/main_on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:b1k5_mobile/features/auth/presentation/pages/login_screen.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeLoginCard extends StatelessWidget {
   const HomeLoginCard({super.key});
@@ -12,12 +12,7 @@ class HomeLoginCard extends StatelessWidget {
       right: 20,
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const LoginScreen(),
-            ),
-          );
+          context.push('/Login');
         },
         child: Container(
           clipBehavior: Clip.hardEdge,

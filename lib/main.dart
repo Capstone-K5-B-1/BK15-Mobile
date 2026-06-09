@@ -60,7 +60,9 @@ final GoRouter _router = GoRouter(
     ),
     GoRoute(
       path: '/MainNavbar',
-      builder: (context, state) => const MainNavbar(),
+      builder: (context, state) => MainNavbar(
+        key: ValueKey(state.extra ?? 'navbar'),
+      ),
     ),
   ]
 );
