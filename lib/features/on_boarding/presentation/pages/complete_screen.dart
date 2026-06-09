@@ -1,5 +1,6 @@
-import 'package:b1k5_mobile/features/home/presentation/pages/guest_home.dart';
+import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
 import 'package:b1k5_mobile/features/on_boarding/presentation/widgets/on_boarding_header.dart';
 
@@ -48,12 +49,7 @@ class CompleteScreen extends StatelessWidget {
                   textColor: const Color(0xFF6E1312),
                   borderRadius: 24, // Membuat tombol lebih bulat ujungnya
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const GuestHomePage(),
-                      ),
-                    );
+                    context.go('/MainNavbar');
                   },
                 ),
               ],

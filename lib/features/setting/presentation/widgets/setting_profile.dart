@@ -1,7 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:b1k5_mobile/features/auth/presentation/pages/login_screen.dart';
+import 'package:b1k5_mobile/repositories/auth_repository.dart';
+import 'package:b1k5_mobile/core/services/api_services.dart';
+import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
 
-class SettingProfile extends StatelessWidget {
+class SettingProfile extends StatefulWidget {
   const SettingProfile({super.key});
+
+  @override
+  State<SettingProfile> createState() => _SettingProfileState();
+}
+
+class _SettingProfileState extends State<SettingProfile> {
+  final AuthRepository _authRepository = AuthRepository(ApiService());
+  bool _isLoggedIn = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLogin();
+  }
+
+  Future<void> _checkLogin() async {
+    final loggedIn = await _authRepository.isLoggedIn();
+    if (mounted) {
+      setState(() {
+        _isLoggedIn = loggedIn;
+      });
+    }
+  }
+
+  Future<void> _handleLogout() async {
+    await _authRepository.logout();
+    if (mounted) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const MainNavbar()),
+        (route) => false,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +78,16 @@ class SettingProfile extends StatelessWidget {
             borderRadius: BorderRadius.circular(100),
           ),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              if (_isLoggedIn) {
+                _handleLogout();
+              } else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              }
+            },
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.transparent,
               foregroundColor: Colors.white,
@@ -53,9 +100,9 @@ class SettingProfile extends StatelessWidget {
               ),
               elevation: 0,
             ),
-            child: const Text(
-              'Sign Up or Login',
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+            child: Text(
+              _isLoggedIn ? 'Logout' : 'Sign Up or Login',
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
             ),
           ),
         ),

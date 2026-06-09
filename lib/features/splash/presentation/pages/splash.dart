@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:b1k5_mobile/features/on_boarding/presentation/pages/main_on_boarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,10 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const MainOnBoardingScreen()),
-        );
+        context.replace('/OnBoarding');
       }
     });
   }
