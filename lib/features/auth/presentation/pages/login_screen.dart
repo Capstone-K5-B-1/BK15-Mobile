@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
 import 'package:b1k5_mobile/shared/widgets/button/input_field.dart';
@@ -43,13 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await _authRepository.login(userId);
       if (mounted) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const MainNavbar(),
-          ),
-          (route) => false,
-        );
+        context.go('/MainNavbar');
       }
     } catch (e) {
       if (mounted) {

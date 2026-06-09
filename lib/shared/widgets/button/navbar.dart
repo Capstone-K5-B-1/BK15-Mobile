@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:go_router/go_router.dart';
 import 'package:b1k5_mobile/features/home/presentation/pages/user_home.dart';
+import 'package:b1k5_mobile/features/home/presentation/pages/guest_home.dart';
 import 'package:b1k5_mobile/features/my_account/presentation/pages/my_account.dart';
 import 'package:b1k5_mobile/features/wealth/presentation/pages/wealth.dart';
 import 'package:b1k5_mobile/features/setting/presentation/pages/setting.dart';
@@ -13,15 +16,48 @@ class MainNavbar extends StatefulWidget {
 
 class _MainNavbarState extends State<MainNavbar> {
   int _selectedIndex = 0;
+  bool _isLoggedIn = false;
+  bool _isLoading = true;
 
-  final List<Widget> _pages = [
-    const UserHomePage(),
-    const MyAccountPage(),
-    const WealthPage(),
-    const SettingPage(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+    
+    // Memberikan output ke terminal saat aplikasi berjalan
+    print('=== [DEBUG] LOGIN STATUS CHECK ===');
+    print('Token: $token');
+    print('Is Logged In: ${token != null && token.isNotEmpty}');
+    print('==================================');
+    
+    if (mounted) {
+      setState(() {
+        _isLoggedIn = token != null && token.isNotEmpty;
+        _isLoading = false;
+      });
+    }
+  }
+
+  List<Widget> get _pages => [
+        _isLoggedIn ? const UserHomePage() : const GuestHomePage(),
+        const MyAccountPage(),
+        const WealthPage(),
+        const SettingPage(),
+      ];
 
   void _onItemTapped(int index) {
+    // Middleware / Auth guard logic
+    // Jika belum login dan mencoba klik menu selain Home (index 0), arahkan ke Login
+    if (!_isLoggedIn && index != 0) {
+      context.push('/Login');
+      return;
+    }
+
     setState(() {
       _selectedIndex = index;
     });
@@ -29,6 +65,14 @@ class _MainNavbarState extends State<MainNavbar> {
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+    
     return Scaffold(
       body: IndexedStack(index: _selectedIndex, children: _pages),
       floatingActionButton: FloatingActionButton(
