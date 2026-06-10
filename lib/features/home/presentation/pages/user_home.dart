@@ -1,3 +1,4 @@
+import 'package:b1k5_mobile/features/home/presentation/widgets/home_saving_card.dart';
 import 'package:flutter/material.dart';
 
 import 'package:b1k5_mobile/features/home/presentation/widgets/home_header.dart';
@@ -61,6 +62,7 @@ class _UserHomePageState extends State<UserHomePage> {
                         ),
                       ),
                       // const HomeLoginCard(),
+                      const HomeSavingCard()
                     ],
                   ),
                 ],

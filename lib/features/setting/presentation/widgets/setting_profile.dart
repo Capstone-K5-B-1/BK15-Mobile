@@ -34,7 +34,9 @@ class _SettingProfileState extends State<SettingProfile> {
   Future<void> _handleLogout() async {
     await _authRepository.logout();
     if (mounted) {
-      context.go('/MainNavbar');
+      // Mengirimkan extra (timestamp) agar ValueKey pada MainNavbar berubah,
+      // sehingga halamannya dipaksa untuk di-render ulang.
+      context.go('/MainNavbar', extra: DateTime.now().millisecondsSinceEpoch.toString());
     }
   }
 

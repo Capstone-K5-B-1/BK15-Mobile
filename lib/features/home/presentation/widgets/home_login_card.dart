@@ -39,12 +39,12 @@ class HomeLoginCard extends StatelessWidget {
                 top: -20,
                 child: Image.asset(
                   'assets/features/home/icons/octo_rocket.png',
-                  width: 100,
+                  width: 80,
                   fit: BoxFit.contain,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 86, right: 24, top: 24, bottom: 24),
+                padding: const EdgeInsets.only(left: 64, right: 24, top: 20, bottom: 20),
                 child: Row(
                   children: [
                     const Expanded(
@@ -55,13 +55,14 @@ class HomeLoginCard extends StatelessWidget {
                             'Ready to discover more?',
                             style: TextStyle(color: Colors.grey, fontSize: 12),
                           ),
-                          SizedBox(height: 4),
+                          SizedBox(height: 2),
                           Text(
-                            'Login or Create an Account Now',
+                            'Login or Create Account Now',
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 14,
                               fontWeight: FontWeight.w600,
                               color: Colors.black87,
+                              letterSpacing: 0.05,
                             ),
                           ),
                         ],
