@@ -35,7 +35,7 @@ class HomeHeader extends StatelessWidget {
           child: RichText(
             text: const TextSpan(
               text: 'Good morning, ',
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              style: TextStyle(color: Colors.white, fontSize: 14),
               children: [
                 TextSpan(
                   text: 'How are you?',

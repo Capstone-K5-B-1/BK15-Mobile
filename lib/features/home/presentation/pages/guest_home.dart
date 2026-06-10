@@ -33,7 +33,7 @@ class _GuestHomePageState extends State<GuestHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const HomeHeader(),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 8),
                   Stack(
                     clipBehavior: Clip.none,
                     children: [
@@ -50,7 +50,7 @@ class _GuestHomePageState extends State<GuestHomePage> {
                         child: const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 100),
+                            SizedBox(height: 56),
                             HomeTabMenu(),
                             SizedBox(height: 30),
                             HomeMenuGrid(),

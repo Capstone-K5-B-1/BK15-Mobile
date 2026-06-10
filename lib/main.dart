@@ -1,12 +1,13 @@
-import 'package:b1k5_mobile/features/home/presentation/pages/user_home.dart';
-import 'package:b1k5_mobile/features/my_account/presentation/pages/my_account.dart';
-import 'package:b1k5_mobile/features/wealth/presentation/pages/wealth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:go_router/go_router.dart';
+import 'package:b1k5_mobile/features/home/presentation/pages/user_home.dart';
+import 'package:b1k5_mobile/features/my_account/presentation/pages/my_account.dart';
+import 'package:b1k5_mobile/features/wealth/presentation/pages/wealth.dart';
 import 'package:b1k5_mobile/features/splash/presentation/pages/splash.dart';
 import 'package:b1k5_mobile/features/auth/presentation/pages/login_screen.dart';
 import 'package:b1k5_mobile/features/on_boarding/presentation/pages/main_on_boarding_screen.dart';
+import 'package:b1k5_mobile/features/transfer/presentation/pages/main_transfer.dart';
 import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
 
 Future<void> main() async {
@@ -59,8 +60,14 @@ final GoRouter _router = GoRouter(
       builder: (context, state) => const MainOnBoardingScreen(),
     ),
     GoRoute(
+      path: '/Transfer',
+      builder: (context, state) => const MainTransfer(),
+    ),
+    GoRoute(
       path: '/MainNavbar',
-      builder: (context, state) => const MainNavbar(),
+      builder: (context, state) => MainNavbar(
+        key: ValueKey(state.extra ?? 'navbar'),
+      ),
     ),
   ]
 );

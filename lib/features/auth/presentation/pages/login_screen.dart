@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       await _authRepository.login(userId);
       if (mounted) {
-        context.go('/MainNavbar');
+        context.go('/MainNavbar', extra: DateTime.now().millisecondsSinceEpoch);
       }
     } catch (e) {
       if (mounted) {
