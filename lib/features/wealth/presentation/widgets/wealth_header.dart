@@ -8,6 +8,7 @@ class WealthHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
+      height: 120,
       padding: const EdgeInsets.only(top: 60, bottom: 16),
       decoration: const BoxDecoration(
         color: Color(0xFF910A19), // Merah bata / Maroon
@@ -25,7 +26,7 @@ class WealthHeader extends StatelessWidget {
           'Wealth',
           style: TextStyle(
             color: Colors.white,
-            fontSize: 18,
+            fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
