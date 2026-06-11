@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
+import 'package:b1k5_mobile/features/transfer/presentation/pages/transfer_pin_auth.dart';
 
 class TransferDetail extends StatefulWidget {
   const TransferDetail({super.key});
@@ -9,13 +11,42 @@ class TransferDetail extends StatefulWidget {
 
 class _TransferDetailState extends State<TransferDetail> {
   String _selectedTransactionType = 'IMMEDIATE';
+  final TextEditingController _amountController = TextEditingController();
+  final TextEditingController _remarksController = TextEditingController();
+
+  bool get _isFormValid =>
+      _amountController.text.isNotEmpty && _remarksController.text.isNotEmpty;
+
+  @override
+  void initState() {
+    super.initState();
+    _amountController.addListener(_onFieldChanged);
+    _remarksController.addListener(_onFieldChanged);
+  }
+
+  void _onFieldChanged() {
+    setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _amountController.removeListener(_onFieldChanged);
+    _remarksController.removeListener(_onFieldChanged);
+    _amountController.dispose();
+    _remarksController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
           // Container Profil & Info
           Container(
             padding: const EdgeInsets.all(16),
@@ -92,7 +123,7 @@ class _TransferDetailState extends State<TransferDetail> {
 
           // Row Mata Uang dan Amount
           Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,7 +150,8 @@ class _TransferDetailState extends State<TransferDetail> {
                           fontSize: 16,
                         ),
                         border: InputBorder.none,
-                        contentPadding: EdgeInsets.zero, // Kunci agar rata kiri sempurna
+                        contentPadding:
+                            EdgeInsets.zero, // Kunci agar rata kiri sempurna
                         isDense: true, // Mengurangi padding bawaan material
                       ),
                     ),
@@ -127,38 +159,49 @@ class _TransferDetailState extends State<TransferDetail> {
                 ],
               ),
               const SizedBox(width: 16),
-              Column(
-                children: [
-                  
-                ],
-              ),
               Expanded(
-                child: TextField(
-                  keyboardType: TextInputType.number,
-                  style: const TextStyle(
-                    fontSize: 24, // Membuat teks amount lebih menonjol
-                    fontWeight: FontWeight.bold,
-                  ),
-                  decoration: const InputDecoration(
-                    hintText: 'Amount',
-                    hintStyle: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFEBEBEB)),
-                    ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFEBEBEB)),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0xFF910A19),
-                        width: 2,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Amount',
+                      style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
                     ),
-                    contentPadding: EdgeInsets.only(bottom: 8),
-                  ),
+                    // const SizedBox(height: 8),
+                    TextField(
+                      controller: _amountController,
+                      keyboardType: TextInputType.number,
+                      style: const TextStyle(
+                        fontSize: 16, // Membuat teks amount lebih menonjol
+                        fontWeight: FontWeight.bold,
+                      ),
+                      decoration: const InputDecoration(
+                        hintText: '0',
+                        hintStyle: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        border: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFEBEBEB)),
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Color(0xFFEBEBEB)),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color(0xFF910A19),
+                            width: 2,
+                          ),
+                        ),
+                        // contentPadding: EdgeInsets.only(bottom: 0),
+                        contentPadding: EdgeInsets.only(bottom: 12.0, top: 4.0),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -168,6 +211,7 @@ class _TransferDetailState extends State<TransferDetail> {
 
           // Remarks Input Field
           TextField(
+            controller: _remarksController,
             decoration: const InputDecoration(
               hintText: 'Remarks',
               border: UnderlineInputBorder(
@@ -195,29 +239,61 @@ class _TransferDetailState extends State<TransferDetail> {
           ),
           const SizedBox(height: 12),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               _buildTransactionTypeButton('IMMEDIATE'),
-              const SizedBox(width: 8),
+              const SizedBox(width: 16),
               _buildTransactionTypeButton('SCHEDULED'),
               const SizedBox(width: 8),
               _buildTransactionTypeButton('RECURRING'),
             ],
           ),
-        ],
-      ),
+          const SizedBox(height: 48),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: CustomButton(
+            text: 'Continue',
+            backgroundColor: _isFormValid ? const Color(0xFF910A19) : const Color(0xFFC2C2C2),
+            textColor: Colors.white,
+            borderRadius: 24,
+            onPressed: () {
+              if (!_isFormValid) return;
+              
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (context) => Container(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                  ),
+                  child: const TransferPinAuth(),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 24),
+      ],
     );
   }
 
   Widget _buildTransactionTypeButton(String title) {
     bool isSelected = _selectedTransactionType == title;
-    return Expanded(
+    return SizedBox(
+      width: 88,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: isSelected ? const Color(0xFF910A19) : Colors.white,
           foregroundColor: isSelected ? Colors.white : const Color(0xFF910A19),
           elevation: 0,
-          padding: const EdgeInsets.symmetric(vertical: 12),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           side: BorderSide(
             color:
                 isSelected ? const Color(0xFF910A19) : const Color(0xFFEBEBEB),
