@@ -1,6 +1,7 @@
 import 'package:b1k5_mobile/features/qris/presentation/pages/qris_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:b1k5_mobile/features/qris/presentation/pages/qris_header.dart';
+import 'package:b1k5_mobile/features/qris/presentation/pages/qris_input.dart';
 
 class MainQris extends StatefulWidget {
   const MainQris({super.key});
@@ -47,7 +48,10 @@ class _MainQrisState extends State<MainQris> {
               });
             },
             physics: const NeverScrollableScrollPhysics(),
-            children: [QrisScan(onNext: _nextPage)],
+            children: [
+              QrisScan(onNext: _nextPage),
+              const QrisInput(),
+            ],
           ),
           const Positioned(
             top: 0,

@@ -12,8 +12,10 @@ class QrisScan extends StatefulWidget {
 }
 
 class _QrisScanState extends State<QrisScan> {
+  bool _isScanned = false; // Flag to prevent multiple triggers
+  
   final MobileScannerController _controller = MobileScannerController(
-    detectionSpeed: DetectionSpeed.noDuplicates,
+    detectionSpeed: DetectionSpeed.normal,
   );
 
   @override
@@ -28,8 +30,11 @@ class _QrisScanState extends State<QrisScan> {
     if (image != null) {
       final BarcodeCapture? capture = await _controller.analyzeImage(image.path);
       if (capture != null && capture.barcodes.isNotEmpty) {
-        print('Barcode found from image! ${capture.barcodes.first.rawValue}');
-        widget.onNext();
+        if (!_isScanned) {
+          _isScanned = true;
+          print('Barcode found from image! ${capture.barcodes.first.rawValue}');
+          Future.microtask(() => widget.onNext());
+        }
       } else {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -124,10 +129,12 @@ class _QrisScanState extends State<QrisScan> {
                   MobileScanner(
                     controller: _controller,
                     onDetect: (capture) {
+                      if (_isScanned) return;
                       final List<Barcode> barcodes = capture.barcodes;
-                      for (final barcode in barcodes) {
-                        print('Barcode found! ${barcode.rawValue}');
-                        widget.onNext();
+                      if (barcodes.isNotEmpty) {
+                        _isScanned = true;
+                        print('Barcode found! ${barcodes.first.rawValue}');
+                        Future.microtask(() => widget.onNext());
                       }
                     },
                     errorBuilder: (context, error) {
