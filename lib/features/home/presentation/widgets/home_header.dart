@@ -13,7 +13,7 @@ class HomeHeader extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset('assets/global/icons/logo.png', height: 28),
+              Image.asset('assets/global/icons/logo.webp', height: 28),
               Row(
                 children: [
                   GestureDetector(

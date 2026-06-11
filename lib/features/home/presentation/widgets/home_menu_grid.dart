@@ -43,18 +43,18 @@ class HomeMenuGrid extends StatelessWidget {
       child: Column(
         children: [
           _buildIconGridRow([
-            _buildMenuIcon('assets/features/home/icons/transfer.png', 'Transfer'),
-            _buildMenuIcon('assets/features/home/icons/bills_and_top_up.png', 'Bills &\nTop Up'),
-            _buildMenuIcon('assets/features/home/icons/cardless.png', 'Cardless'),
-            _buildMenuIcon('assets/features/home/icons/electronic_card.png', 'Electronic\nCard'),
-            _buildMenuIcon('assets/features/home/icons/verify_with_octo.png', 'Verify with\nOCTO'),
+            _buildMenuIcon('assets/features/home/icons/transfer.webp', 'Transfer'),
+            _buildMenuIcon('assets/features/home/icons/bills_and_top_up.webp', 'Bills &\nTop Up'),
+            _buildMenuIcon('assets/features/home/icons/cardless.webp', 'Cardless'),
+            _buildMenuIcon('assets/features/home/icons/electronic_card.webp', 'Electronic\nCard'),
+            _buildMenuIcon('assets/features/home/icons/verify_with_octo.webp', 'Verify with\nOCTO'),
           ]),
           const SizedBox(height: 20),
           _buildIconGridRow([
-            _buildMenuIcon('assets/features/home/icons/my_schedule.png', 'My\nSchedule'),
-            _buildMenuIcon('assets/features/home/icons/investment.png', 'Investment'),
-            _buildMenuIcon('assets/features/home/icons/promo_code.png', 'Promo\nCode'),
-            _buildMenuIcon('assets/features/home/icons/savings_and_deposit.png', 'Savings\n& Deposit'),
+            _buildMenuIcon('assets/features/home/icons/my_schedule.webp', 'My\nSchedule'),
+            _buildMenuIcon('assets/features/home/icons/investment.webp', 'Investment'),
+            _buildMenuIcon('assets/features/home/icons/promo_code.webp', 'Promo\nCode'),
+            _buildMenuIcon('assets/features/home/icons/savings_and_deposit.webp', 'Savings\n& Deposit'),
           ]),
         ],
       ),

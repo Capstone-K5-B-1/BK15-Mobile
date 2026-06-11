@@ -193,7 +193,7 @@ class _QrisScanState extends State<QrisScan> {
                                 },
                               ),
                               Image.asset(
-                                'assets/features/home/icons/qris_logo.png',
+                                'assets/features/home/icons/qris_logo.webp',
                                 color: Colors.white,
                                 width: 80,
                                 fit: BoxFit.contain,
