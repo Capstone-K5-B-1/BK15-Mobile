@@ -101,7 +101,9 @@ class HomeMenuGrid extends StatelessWidget {
         asset: 'assets/features/home/icons/my_schedule.webp',
         label: 'My\nSchedule',
         category: 'Others',
-        onPressed: () {},
+        onPressed: () {
+          context.push('/MySchedule');
+        },
       ),
       MenuItemData(
         asset: 'assets/features/home/icons/investment.webp',
@@ -119,7 +121,9 @@ class HomeMenuGrid extends StatelessWidget {
         asset: 'assets/features/home/icons/savings_and_deposit.webp',
         label: 'Savings\n& Deposit',
         category: 'Products',
-        onPressed: () {},
+        onPressed: () {
+          context.push('/Product');
+        },
       ),
     ];
 
