@@ -6,6 +6,7 @@ import 'package:b1k5_mobile/features/home/presentation/pages/guest_home.dart';
 import 'package:b1k5_mobile/features/my_account/presentation/pages/my_account.dart';
 import 'package:b1k5_mobile/features/wealth/presentation/pages/wealth.dart';
 import 'package:b1k5_mobile/features/setting/presentation/pages/setting.dart';
+import 'package:b1k5_mobile/features/qris/presentation/pages/main_qris.dart';
 
 class MainNavbar extends StatefulWidget {
   const MainNavbar({super.key});
@@ -76,7 +77,14 @@ class _MainNavbarState extends State<MainNavbar> {
     return Scaffold(
       body: IndexedStack(index: _selectedIndex, children: _pages),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const MainQris(),
+            ),
+          );
+        },
         backgroundColor: const Color(0xFF910A19), // Merah bata / Maroon
         shape: const CircleBorder(),
         child: Column(
