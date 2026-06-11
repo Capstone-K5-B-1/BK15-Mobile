@@ -18,6 +18,8 @@ class UserHomePage extends StatefulWidget {
 }
 
 class _UserHomePageState extends State<UserHomePage> {
+  String _selectedTab = 'For You';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,10 +78,17 @@ class _UserHomePageState extends State<UserHomePage> {
                                 ),
                               ],
                             ),
+                            SizedBox(height: 24),
+                            HomeTabMenu(
+                              selectedTab: _selectedTab,
+                              onTabChanged: (tab) {
+                                setState(() {
+                                  _selectedTab = tab;
+                                });
+                              },
+                            ),
                             const SizedBox(height: 30),
-                            const HomeTabMenu(),
-                            const SizedBox(height: 30),
-                            const HomeMenuGrid(),
+                            HomeMenuGrid(selectedTab: _selectedTab),
                             const SizedBox(height: 30),
                             const HomeEWallet(),
                             const SizedBox(height: 30),
