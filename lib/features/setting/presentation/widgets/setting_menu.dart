@@ -15,7 +15,7 @@ class SettingMenu extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(4),
               child: Image.asset(
-                'assets/features/home/icons/display_and_others.png',
+                'assets/features/home/icons/display_and_others.webp',
                 width: 20,
                 height: 20,
               ),

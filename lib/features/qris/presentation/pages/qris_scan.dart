@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
 
 class QrisScan extends StatefulWidget {
@@ -11,14 +12,37 @@ class QrisScan extends StatefulWidget {
 }
 
 class _QrisScanState extends State<QrisScan> {
+  bool _isScanned = false; // Flag to prevent multiple triggers
+  
   final MobileScannerController _controller = MobileScannerController(
-    detectionSpeed: DetectionSpeed.noDuplicates,
+    detectionSpeed: DetectionSpeed.normal,
   );
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickImage() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      final BarcodeCapture? capture = await _controller.analyzeImage(image.path);
+      if (capture != null && capture.barcodes.isNotEmpty) {
+        if (!_isScanned) {
+          _isScanned = true;
+          print('Barcode found from image! ${capture.barcodes.first.rawValue}');
+          Future.microtask(() => widget.onNext());
+        }
+      } else {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('No QR code found in the image')),
+          );
+        }
+      }
+    }
   }
 
   @override
@@ -65,8 +89,9 @@ class _QrisScanState extends State<QrisScan> {
                         Text(
                           "Create QR Payment",
                           style: TextStyle(
+                            color: Color(0xFF6B6B6B),
                             fontSize: 12,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
                       ],
@@ -104,10 +129,12 @@ class _QrisScanState extends State<QrisScan> {
                   MobileScanner(
                     controller: _controller,
                     onDetect: (capture) {
+                      if (_isScanned) return;
                       final List<Barcode> barcodes = capture.barcodes;
-                      for (final barcode in barcodes) {
-                        print('Barcode found! ${barcode.rawValue}');
-                        widget.onNext();
+                      if (barcodes.isNotEmpty) {
+                        _isScanned = true;
+                        print('Barcode found! ${barcodes.first.rawValue}');
+                        Future.microtask(() => widget.onNext());
                       }
                     },
                     errorBuilder: (context, error) {
@@ -152,14 +179,26 @@ class _QrisScanState extends State<QrisScan> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              _buildIconAction(Icons.flash_on, "Flash On"),
+                              ValueListenableBuilder<MobileScannerState>(
+                                valueListenable: _controller,
+                                builder: (context, state, child) {
+                                  final isFlashOn = state.torchState == TorchState.on;
+                                  return _buildIconAction(
+                                    isFlashOn ? Icons.flash_off : Icons.flash_on,
+                                    isFlashOn ? "Flash Off" : "Flash On",
+                                    () {
+                                      _controller.toggleTorch();
+                                    },
+                                  );
+                                },
+                              ),
                               Image.asset(
-                                'assets/features/home/icons/qris_logo.png',
+                                'assets/features/home/icons/qris_logo.webp',
                                 color: Colors.white,
                                 width: 80,
                                 fit: BoxFit.contain,
                               ),
-                              _buildIconAction(Icons.image, "Upload"),
+                              _buildIconAction(Icons.image, "Upload", _pickImage),
                             ],
                           ),
                         ),
@@ -176,20 +215,23 @@ class _QrisScanState extends State<QrisScan> {
   }
 
   // Helper widget untuk tombol Flash dan Upload
-  Widget _buildIconAction(IconData icon, String label) {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(12),
-          decoration: const BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
+  Widget _buildIconAction(IconData icon, String label, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(icon, color: Colors.black, size: 20),
           ),
-          child: Icon(icon, color: Colors.black, size: 20),
-        ),
-        const SizedBox(height: 8),
-        Text(label, style: const TextStyle(color: Colors.white, fontSize: 12)),
-      ],
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(color: Colors.white, fontSize: 12)),
+        ],
+      ),
     );
   }
 }

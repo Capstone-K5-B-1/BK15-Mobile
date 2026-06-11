@@ -99,7 +99,7 @@ class _MainNavbarState extends State<MainNavbar> {
               ),
             ),
             Image.asset(
-              'assets/features/home/icons/qris_logo.png',
+              'assets/features/home/icons/qris_logo.webp',
               color: Colors.white,
               width: 40,
               height: 20,

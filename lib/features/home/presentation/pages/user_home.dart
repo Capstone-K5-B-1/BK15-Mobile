@@ -1,4 +1,7 @@
 import 'package:b1k5_mobile/features/home/presentation/widgets/home_saving_card.dart';
+import 'package:b1k5_mobile/features/home/presentation/widgets/home_recommendation.dart';
+import 'package:b1k5_mobile/features/home/presentation/widgets/home_e_wallet.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter/material.dart';
 
 import 'package:b1k5_mobile/features/home/presentation/widgets/home_header.dart';
@@ -48,16 +51,40 @@ class _UserHomePageState extends State<UserHomePage> {
                             topRight: Radius.circular(30),
                           ),
                         ),
-                        child: const Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 100),
-                            HomeTabMenu(),
-                            SizedBox(height: 30),
-                            HomeMenuGrid(),
-                            SizedBox(height: 30),
-                            HomeNewsPromo(),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 100),
+                            HomeRecommendation(
+                              title: 'Recommendation',
+                              subtitle: 'Specially curated just for you',
+                              items: [
+                                RecommendationItem(
+                                  title: 'Bill & Top Up',
+                                  icon: LucideIcons.trendingUp,
+                                  onTap: () {},
+                                ),
+                                RecommendationItem(
+                                  title: 'Saving & Deposit',
+                                  icon: LucideIcons.shieldCheck,
+                                  onTap: () {},
+                                ),
+                                RecommendationItem(
+                                  title: 'My Schedule',
+                                  icon: LucideIcons.landmark,
+                                  onTap: () {},
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 30),
+                            const HomeTabMenu(),
+                            const SizedBox(height: 30),
+                            const HomeMenuGrid(),
+                            const SizedBox(height: 30),
+                            const HomeEWallet(),
+                            const SizedBox(height: 30),
+                            const HomeNewsPromo(),
+                            const SizedBox(height: 40),
                           ],
                         ),
                       ),

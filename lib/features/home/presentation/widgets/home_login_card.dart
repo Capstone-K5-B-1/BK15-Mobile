@@ -38,7 +38,7 @@ class HomeLoginCard extends StatelessWidget {
                 bottom: -32,
                 top: -20,
                 child: Image.asset(
-                  'assets/features/home/icons/octo_rocket.png',
+                  'assets/features/home/icons/octo_rocket.webp',
                   width: 80,
                   fit: BoxFit.contain,
                 ),

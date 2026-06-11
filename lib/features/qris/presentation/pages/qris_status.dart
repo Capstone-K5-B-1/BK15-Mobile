@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:b1k5_mobile/shared/widgets/feedback/status.dart';
 
-class TransferStatus extends StatelessWidget {
+class QrisStatus extends StatelessWidget {
   final bool isSuccess;
 
-  const TransferStatus({super.key, this.isSuccess = true});
+  const QrisStatus({super.key, this.isSuccess = true});
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +13,8 @@ class TransferStatus extends StatelessWidget {
       isSuccess: isSuccess,
       title: isSuccess ? 'Success' : 'Failed',
       description: isSuccess
-          ? 'Your transaction has been processed successfully.'
-          : 'We could not process your transaction. Please try again.',
+          ? 'Your payment has been processed successfully.'
+          : 'We could not process your payment. Please try again.',
       buttonText: isSuccess ? 'Back to Home' : 'Try Again',
       onPressed: () {
         if (isSuccess) {
