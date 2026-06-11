@@ -47,16 +47,20 @@ class _TransferPinAuthState extends State<TransferPinAuth> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
+    return Container(
+      padding: EdgeInsets.only(top: 16),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(36)),
+      ),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
             'Authentication',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF910A19)),
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 36),
           const Text('Enter Your PIN', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
           const SizedBox(height: 24),
 
@@ -78,7 +82,7 @@ class _TransferPinAuthState extends State<TransferPinAuth> {
             }),
           ),
 
-          const SizedBox(height: 60),
+          const SizedBox(height: 36),
 
           // 2. CUSTOM NUMPAD KEYBOARD (Gunakan GridView)
           Padding(

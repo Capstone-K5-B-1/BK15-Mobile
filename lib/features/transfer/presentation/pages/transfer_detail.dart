@@ -263,10 +263,17 @@ class _TransferDetailState extends State<TransferDetail> {
             onPressed: () {
               if (!_isFormValid) return;
               
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const TransferPinAuth(),
+              showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                backgroundColor: Colors.transparent,
+                builder: (context) => Container(
+                  height: MediaQuery.of(context).size.height * 0.7,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                  ),
+                  child: const TransferPinAuth(),
                 ),
               );
             },
