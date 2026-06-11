@@ -87,7 +87,9 @@ class HomeMenuGrid extends StatelessWidget {
         asset: 'assets/features/home/icons/electronic_card.webp',
         label: 'Electronic\nCard',
         category: 'Products',
-        onPressed: () {},
+        onPressed: () {
+          context.push('/ElectronicCard');
+        },
       ),
       MenuItemData(
         asset: 'assets/features/home/icons/verify_with_octo.webp',

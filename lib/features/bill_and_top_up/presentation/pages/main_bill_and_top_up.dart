@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:b1k5_mobile/features/bill_and_top_up/presentation/pages/bill_and_top_up_header.dart';
-import 'package:b1k5_mobile/features/bill_and_top_up/presentation/pages/bill_and_top_up_menu.dart';
-import 'package:b1k5_mobile/features/bill_and_top_up/presentation/pages/bill_and_top_up_slider.dart';
+import 'package:b1k5_mobile/features/bill_and_top_up/presentation/widgets/bill_and_top_up_header.dart';
+import 'package:b1k5_mobile/features/bill_and_top_up/presentation/widgets/bill_and_top_up_menu.dart';
+import 'package:b1k5_mobile/features/bill_and_top_up/presentation/widgets/bill_and_top_up_slider.dart';
 
 class MainBillAndTopUp extends StatefulWidget {
   const MainBillAndTopUp({super.key});

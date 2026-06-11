@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:b1k5_mobile/shared/widgets/input/search_bar.dart';
-import 'package:b1k5_mobile/features/bill_and_top_up/presentation/pages/e_wallet.dart';
+import 'package:b1k5_mobile/features/bill_and_top_up/presentation/widgets/e_wallet.dart';
 
 class BillAndTopUpMenu extends StatefulWidget {
   const BillAndTopUpMenu({super.key});
