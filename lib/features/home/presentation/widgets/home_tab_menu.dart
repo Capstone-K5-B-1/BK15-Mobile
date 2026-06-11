@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
 
-class HomeTabMenu extends StatefulWidget {
-  const HomeTabMenu({super.key});
+class HomeTabMenu extends StatelessWidget {
+  final String selectedTab;
+  final ValueChanged<String> onTabChanged;
 
-  @override
-  State<HomeTabMenu> createState() => _HomeTabMenuState();
-}
-
-class _HomeTabMenuState extends State<HomeTabMenu> {
-  String _selectedTab = 'For You';
-
-  final List<String> _tabs = [
-    'For You',
-    'Transactions',
-    'Products',
-    'Others'
-  ];
+  const HomeTabMenu({
+    super.key,
+    required this.selectedTab,
+    required this.onTabChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final List<String> tabs = [
+      'For You',
+      'Transaction',
+      'Products',
+      'Others'
+    ];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: _tabs.map((tab) {
-          final isSelected = _selectedTab == tab;
+        children: tabs.map((tab) {
+          final isSelected = selectedTab == tab;
           return GestureDetector(
             onTap: () {
-              setState(() {
-                _selectedTab = tab;
-              });
+              onTabChanged(tab);
             },
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
@@ -52,4 +50,3 @@ class _HomeTabMenuState extends State<HomeTabMenu> {
     );
   }
 }
-

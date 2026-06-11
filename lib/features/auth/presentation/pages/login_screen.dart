@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:b1k5_mobile/shared/widgets/button/custom_button.dart';
-import 'package:b1k5_mobile/shared/widgets/button/input_field.dart';
+import 'package:b1k5_mobile/shared/widgets/input/input_field.dart';
 import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
 import 'package:b1k5_mobile/core/services/api_services.dart';
 import 'package:b1k5_mobile/repositories/auth_repository.dart';

@@ -14,6 +14,7 @@ class GuestHomePage extends StatefulWidget {
 }
 
 class _GuestHomePageState extends State<GuestHomePage> {
+  String _selectedTab = 'For You';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,16 +48,21 @@ class _GuestHomePageState extends State<GuestHomePage> {
                             topRight: Radius.circular(30),
                           ),
                         ),
-                        child: const Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(height: 56),
-                            HomeTabMenu(),
-                            SizedBox(height: 30),
-                            HomeMenuGrid(),
-                            SizedBox(height: 30),
-                            HomeNewsPromo(),
-                            SizedBox(height: 40),
+                            const SizedBox(height: 56),
+                            HomeTabMenu(selectedTab: _selectedTab,
+                              onTabChanged: (tab) {
+                                setState(() {
+                                  _selectedTab = tab;
+                                });
+                              },),
+                            const SizedBox(height: 30),
+                            HomeMenuGrid(selectedTab: _selectedTab),
+                            const SizedBox(height: 30),
+                            const HomeNewsPromo(),
+                            const SizedBox(height: 40),
                           ],
                         ),
                       ),
