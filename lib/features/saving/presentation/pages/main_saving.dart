@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:b1k5_mobile/features/product/presentation/widgets/product_header.dart';
-import 'package:b1k5_mobile/features/product/presentation/widgets/product_slider.dart';
-import 'package:b1k5_mobile/features/product/presentation/widgets/product_panel.dart';
+import 'package:b1k5_mobile/features/saving/presentation/widgets/saving_header.dart';
+import 'package:b1k5_mobile/features/saving/presentation/widgets/saving_slider.dart';
+import 'package:b1k5_mobile/features/saving/presentation/widgets/saving_panel.dart';
 
-class MainProduct extends StatefulWidget {
-  const MainProduct({super.key});
+class MainSaving extends StatefulWidget {
+  const MainSaving({super.key});
 
   @override
-  State<MainProduct> createState() => _MainProductState();
+  State<MainSaving> createState() => _MainSavingState();
 }
 
-class _MainProductState extends State<MainProduct> {
+class _MainSavingState extends State<MainSaving> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      
       backgroundColor: Color(0xFF910A19), // Red background
       body: Column(
         children: [
-          ProductHeader(),
+          SavingHeader(),
           Expanded(
             child: CustomScrollView(
               slivers: [
@@ -26,14 +25,14 @@ class _MainProductState extends State<MainProduct> {
                   child: Column(
                     children: [
                       SizedBox(height: 16),
-                      ProductSlider(),
+                      SavingSlider(),
                       SizedBox(height: 32),
                     ],
                   ),
                 ),
                 const SliverFillRemaining(
                   hasScrollBody: true,
-                  child: ProductPanel(),
+                  child: SavingPanel(),
                 ),
               ],
             ),

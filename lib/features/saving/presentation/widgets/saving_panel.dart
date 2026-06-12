@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProductPanel extends StatelessWidget {
-  const ProductPanel({super.key});
+class SavingPanel extends StatelessWidget {
+  const SavingPanel({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +79,16 @@ class ProductPanel extends StatelessWidget {
   Widget _buildSavingCard(Map<String, dynamic> cardData) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFFFFFFFF),
+            Color(0xFFF4F4F4),
+          ],
+        ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: Color(0xFFD5D5D5)),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.03),

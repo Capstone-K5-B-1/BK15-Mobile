@@ -1,14 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-class ProductSlider extends StatefulWidget {
-  const ProductSlider({super.key});
+class InvestmentSlider extends StatefulWidget {
+  const InvestmentSlider({super.key});
 
   @override
-  State<ProductSlider> createState() => _ProductSliderState();
+  State<InvestmentSlider> createState() => _InvestmentSliderState();
 }
 
-class _ProductSliderState extends State<ProductSlider> {
+class _InvestmentSliderState extends State<InvestmentSlider> {
   final ScrollController _scrollController = ScrollController();
   Timer? _timer;
 

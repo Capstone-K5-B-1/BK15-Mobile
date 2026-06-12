@@ -10,8 +10,9 @@ import 'package:b1k5_mobile/features/on_boarding/presentation/pages/main_on_boar
 import 'package:b1k5_mobile/features/transfer/presentation/pages/main_transfer.dart';
 import 'package:b1k5_mobile/features/bill_and_top_up/presentation/pages/main_bill_and_top_up.dart';
 import 'package:b1k5_mobile/features/electronic_card/presentation/pages/main_electronic_card.dart';
-import 'package:b1k5_mobile/features/product/presentation/pages/main_product.dart';
+import 'package:b1k5_mobile/features/saving/presentation/pages/main_saving.dart';
 import 'package:b1k5_mobile/features/my_schedule/presentation/pages/main_my_schedule.dart';
+import 'package:b1k5_mobile/features/investment/presentation/pages/main_invesment.dart';
 import 'package:b1k5_mobile/shared/widgets/button/navbar.dart';
 
 Future<void> main() async {
@@ -76,8 +77,12 @@ final GoRouter _router = GoRouter(
       builder: (context, state) => const MainElectronicCard(),
     ),
     GoRoute(
-      path: '/Product',
-      builder: (context, state) => const MainProduct(),
+      path: '/Saving',
+      builder: (context, state) => const MainSaving(),
+    ),
+    GoRoute(
+      path: '/Investment',
+      builder: (context, state) => const MainInvestment(),
     ),
     GoRoute(
       path: '/MySchedule',

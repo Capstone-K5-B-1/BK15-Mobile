@@ -109,7 +109,9 @@ class HomeMenuGrid extends StatelessWidget {
         asset: 'assets/features/home/icons/investment.webp',
         label: 'Investment',
         category: 'Products',
-        onPressed: () {},
+        onPressed: () {
+          context.push('/Investment');
+        },
       ),
       MenuItemData(
         asset: 'assets/features/home/icons/promo_code.webp',
@@ -122,7 +124,7 @@ class HomeMenuGrid extends StatelessWidget {
         label: 'Savings\n& Deposit',
         category: 'Products',
         onPressed: () {
-          context.push('/Product');
+          context.push('/Saving');
         },
       ),
     ];
